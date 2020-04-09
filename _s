@@ -5,4 +5,5 @@ cp ../Templet.cpp a.cpp
 cp ../Templet.cpp b.cpp
 cp ../Templet.cpp c.cpp
 cp ../Templet.cpp d.cpp 
+cp ../rf _r
 code a.cpp 
