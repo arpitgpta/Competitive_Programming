@@ -1,0 +1,8 @@
+name='round'$1
+mkdir $name
+cd $name
+cp ../Templet.cpp a.cpp
+cp ../Templet.cpp b.cpp
+cp ../Templet.cpp c.cpp
+cp ../Templet.cpp d.cpp 
+code a.cpp 
