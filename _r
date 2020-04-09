@@ -1,2 +1,2 @@
 name=$1
-g++ $1'.cpp' && ./a.out </input.txt >/output.txt
+g++ $1'.cpp' && ./a.out <input.txt >output.txt
