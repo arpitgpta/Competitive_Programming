@@ -1,0 +1,10 @@
+i 0
+ttl 1
+ans 1
+i 1
+ttl 3
+ans 3
+i 2
+ttl 0
+ans 5
+5 
