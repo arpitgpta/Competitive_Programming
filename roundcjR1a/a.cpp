@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define endl '\n'
-// #define int long long int
+#define int long long int
 using namespace std;
 #define pii pair <int, int>
 #define mii map<int, int>
@@ -17,125 +17,72 @@ using namespace std;
 #define mi_arr(n, s) int* n = new int[s]; loop(s) cin >> n[i]; 
 #define arr_out(n, s) Loop(0, s, lout) cout << n[lout] << " ";
 #define pi(x) printf("%lld ", x);
-typedef long long int ll;
-ll siz=300001;
-ll MAX=10000000000000;
-ll P=1000000007;
-int32_t main()
-{
-    fastio;
-    ll t,i,j,k,len,m,n,o,p,q,r,s,tt=0;
-    string a[3000],pref[3000],su[3000],stempqr[3000];
- 
+
+int32_t main(){
+    // fastio;
     w(t){
-        tt++;
-        cin>>n;
-        for(i=0;i<n;i++)
-        {
-            cin>>a[i];
-            len=a[i].length();
-            //cout<<l<<endl;
-            for(j=0;j<len;j++)
-            {
-                if(a[i][j]=='*')
-                {
-                   //cout<<"aaya \n";
-                   break;
-                }
+        int n;
+        cin >> n;
+        // vector<string> arr(n, "");
+        // loop(n) cin >> arr[i];
+        string str;
+        string crr_pre = "", crr_suff = "";
+        string temp;
+        int len = 0;
+        int j;
+        bool flag = true;
+        string mid = "";
+        string m = "";
+        flag = true;
+        loop(n){
+            cin >> str;
+            j = 0; 
+            len = str.length();
+            temp = "";
+            while(j < len and str[j] != '*'){
+                temp += str[j];
+                j++;
             }
-            for(k=len-1;k>=0;k--)
-            {
-                if(a[i][k]=='*')
-                {
-                   // cout<<"gaya\n";
-                    break;
-                }
-                
+            j++;
+            m = "";
+            while(j < len){
+                if(str[j] == '*') mid += m, m = "";
+                else m += str[j];
+                j++;
+            }
+            // deb2(m, mid);
+            if(temp.length() > crr_pre.length()){
+                for(int j = 0; j < crr_pre.length(); j++) if(temp[j] != crr_pre[j]) flag = false;
+                crr_pre = temp;
+            }
+            else{
+                for(int j = 0; j < temp.length(); j++) if(temp[j] != crr_pre[j]) flag = false;
             }
             
-                pref[i]=a[i].substr(0,j);
-                if(len-1-k>0)
-                {
-                   su[i]=a[i].substr(k+1,len-1-k);
-                }
-                else 
-                su[i]="";
-                if(k-j-1>0)
-                stempqr[i]=a[i].substr(j+1,k-j-1);
-                else 
-                stempqr[i]="";
-                //cout<<prefix[i]<<" p "<<suffix[i]<<" s "<<stem[i];
-        }
-        string pre="",suf="";
-        ll inde=-1,lep=-1,les=-1,idx=-1;
-        for(i=0;i<n;i++)
-        {
-            //cout<<prefix[i].length()<<" "<<suffix[i].length()<<endl;
-           if((ll)pref[i].length()>lep)
-           {
-               lep=pref[i].length();
-               pre=pref[i];
-           }
-           if((ll)su[i].length()>les)
-           {
-               suf=su[i];
-               les=su[i].length();
-           }
-        }
-
-        //pre=prefix[inde];
-        //suf=suffix[indes];
-        //cout<<pre <<" an "<<suf<<endl;
-        ll flagabc=0;
-        for(i=0;i<n;i++)
-        {
-            ll fg=0;
-            for(j=0;j<pref[i].length();j++)
-            {
-                if(pref[i][j]!=pre[j])
-                {
-                    fg=1;
-                    break;
+            j = len-1;
+            temp = "";
+            while(j >= 0 and str[j] != '*'){
+                temp += str[j];
+                j--;
+            }
+            // reverse(temp.begin(), temp.end());
+            if(temp.length() > crr_suff.length()){
+                for(int j = 0; j < crr_suff.length(); j++) if(temp[j] != crr_suff[j]) flag = false;
+                crr_suff = temp;
+            }
+            else{
+                for(int j = 0; j < temp.length(); j++) {
+                    if(temp[j] != crr_suff[j]) flag = false;
                 }
             }
-            if(fg)
-            {
-                flagabc=1;
-                break;
-            }
-               ll offset=suf.length()-su[i].length();
-            for(j=0;j<su[i].length();j++)
-            {
-                if(su[i][j]!=suf[j+offset])
-                {
-                    fg=1;
-                    break;
-                }
-            }
-            if(fg)
-            {
-                flagabc=1;
-                break;
-            }
+        }        
+        cout << "Case #" << t << ": ";
+        if(flag){
+            cout << crr_pre;
+            cout << mid;
+            reverse(crr_suff.begin(), crr_suff.end());
+            cout << crr_suff << endl;
         }
-            if(flagabc)
-            {
-                cout<<"Case #"<<tt<<": *\n";
-                continue;
-            }
-            string answer="";
-            answer+=pre;
-            for(i=0;i<n;i++)
-            {
-                answer+=stempqr[i];
-            }
-            answer+=suf;
-            for(j=0;j<answer.length();j++)
-            {
-                if(answer[j]=='*')
-                answer[j]='A';
-            }
-            cout<<"Case #"<<tt<<": "<<answer<<"\n";
+        else cout << "*" << endl;
     }
-    return 0;
 }
