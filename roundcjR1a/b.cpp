@@ -48,31 +48,21 @@ int32_t main(){
         int n;
         cin >> n;
         cout << "Case #" << t << ":\n";
-        n--;
-        cout << "1 1" << endl;
-        int i = 1;
-        int j = 1;
-        pii n1 = next(i, j);
-        while(pt2[n1.first][n1.second] <= n){
-            if(i%2 == 0) j++;
-            i++;
+        
+        int i = 1, j = 1;
+        pii nx;
+        while(n){
+            cout << i << " " << j << endl;
             n-=pt[i][j];
-            // cout << i << " " << j << endl;
-            n1 = next(i, j);
-        }
-        deb(n);
-        deb(pt2[i][j]);
-        j--;
-        while(j >= 1 and n > 0){
-            // cout << i << " " << j << endl;
-            n -= pt[i][j];
-            j--;
-        }
-        i++;
-
-        while(n--){
-            // cout << i << " 1" << endl;
-            i++;
+            nx = next(i, j);
+            // deb(n);
+            // deb(pt2[nx.first][nx.second]);
+            // cout << endl;
+            if(pt2[nx.first][nx.second] <= n or pt[nx.first][nx.second] == n) i = nx.first, j = nx.second;
+            else{
+                if(j == 1) i++;
+                else j--;
+            }
         }
     }
 
