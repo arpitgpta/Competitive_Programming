@@ -41,7 +41,7 @@ int32_t main(){
                 if(c2 > p2) flag = false;
                 if(c2 < c1) flag = false;
                 if(p2 < p1) flag = false;
-                if(c2-c1 > 0 and p2-p1 <= 0) flag = false;
+                if(c2-c1 > p2-p1) flag = false;
 
                 p1 = p2;
                 c1 = c2;
