@@ -17,7 +17,6 @@ using namespace std;
 #define mi_arr(n, s) int* n = new int[s]; loop(s) cin >> n[i]; 
 #define arr_out(n, s) Loop(0, s, lout) cout << n[lout] << " ";
 #define pi(x) printf("%lld ", x);
-#define end printf("\n");
 
 int32_t main(){
     fastio;
