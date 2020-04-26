@@ -22,7 +22,20 @@ using namespace std;
 
 int32_t main(){
     fastio;
+    string str;
     w(t){
-        
+        cin >> str;
+        int len = str.length();
+        int zeros = 0, ones = 0;
+        loop(len) str[i] == '0' ? zeros++ : ones++;
+        if(zeros == len or ones == len) cout << str << endl;
+        else{
+            if(str[0] == '0'){
+                loop(len) cout << "01"; cout << endl;
+            }
+            else{
+                loop(len) cout << "10"; cout << endl;
+            }  
+        }
     }
 }

@@ -21,7 +21,15 @@ using namespace std;
 
 
 int32_t main(){
+    int a, b, x, y;
     w(t){
-
+        cin >> x >> y;
+        cin >> a >> b;
+        int ans1 = min(x, y)*b;
+        int ans2;
+        ans1 += abs(x-y)*a;
+        ans2 = (x+y)*a;
+        int ans = min(ans1, ans2); 
+        cout << ans << endl;
     }
 }
