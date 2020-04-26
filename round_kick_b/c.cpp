@@ -17,56 +17,60 @@ using namespace std;
 #define mi_arr(n, s) int* n = new int[s]; loop(s) cin >> n[i]; 
 #define arr_out(n, s) Loop(0, s, lout) cout << n[lout] << " ";
 #define pi(x) printf("%lld ", x);
-#define modd 1000000000
+#define mod (int)1000000000
 
-int32_t main()
-{
-    int t,i,j,c,n,T,temp,d,mini,p,q;
-string str;
-cin>>t;
-T=t;
-while (t--)
-{p=q=0;
-    mini=1000000000001;
-    cout<<"Case "<<"#"<<T-t<<": " ;
-    cin>>str;
-    int l=str.length();
-    stack<int> s;
-    s.push(1);
-    s.push(1);
-    s.push(1);
-    for(i=0;i<l;i++)
-    {
-int m=s.top();
-if(str[i]==')')
-{s.pop();
-}
-    else if(str[i]=='N')
-     p=(p-(1*m)+ modd)%modd;
-     else if(str[i]=='S')
-     p=(p+(1*m))%modd;
-     else if(str[i]=='W')
-     q=(q-(1*m)+modd)%modd;
-     else if(str[i]=='E')
-     q=(q+(1*m))%modd;
-     else if (str[i]=='(')
-     {
-       s.push((1)%modd);  
-     }
-     else
-     {
-         s.push((m*(str[i]-48))%modd);
-       
-         m=s.top();
-           i++;
-     }
+map<int, int> closing;
 
-//cout<<p<<":"<<q<<"  "<<m<<endl;
-
+void get_closings(string str){
+    stack<int> stk;
+    int len = str.length();
+    for(int i = 0; i < len; i++){
+        // deb2(i, str[i]);
+        // deb(('(' == str[i]));
+        // deb(i);
+        if(str[i] == '(') {
+            stk.push(i);
+        }
+        else if(str[i] == ')'){
+            int p = stk.top();
+            stk.pop();
+            closing[p] = i;
+            // deb2(i, p);
+        }
     }
-cout<<1+(q)%modd<<" "<<1+(p)%modd<<endl;
 }
 
+string str;
 
-
+pii solve(int start, int end, int tab){
+    // loop(tab) cout << "    "; deb2(start, end);
+    int x = 0, y = 0;
+    Loop(start, end, i){
+        if(str[i] == 'E') x = (x+1)%mod;
+        else if(str[i] == 'W') x = (x-1)%mod;
+        else if(str[i] == 'S') y = (y+1+mod)%mod;
+        else if(str[i] == 'N') y = (y-1+mod)%mod;
+        else if(str[i] == '('){
+            int d = str[i-1]-'0';
+            pii temp = solve(i+1, closing[i], tab+1);
+            x = (x+(temp.first*d)%mod)%mod;
+            y = (y+(temp.second*d)%mod)%mod;
+            i = closing[i];
+        }
+    }
+    return {x%mod, y%mod};
 }
+
+int32_t main(){
+    w(t){   
+        int x = 0, y = 0;
+        closing = map<int, int>();
+        cin >> str;
+        // deb(str);
+        get_closings(str);
+        // for(auto i : closing) cout << i.first << " " << i.second << endl; cout << endl;
+        pii ans = solve(0, str.length(), 0);
+        
+        cout << "Case #" << t << ": " << ans.first+1 << " " << ans.second+1 << endl;
+    }
+ }
