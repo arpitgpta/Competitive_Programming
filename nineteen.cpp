@@ -43,17 +43,8 @@ int32_t main(){
                 break;
         }
     }
-    // deb2(n, e);
-    // deb2(t, i);
     if(!(n%2)) n--;
     n /= 2;
-    // n *= 3;
-    // n /= 3;
     e /= 3; 
-    // cout << endl;
-    // deb2(n, e);
-    // deb2(t, i);
-    // int ee = e/3;
-    // if(n )
     cout << min(i, min(n, min(t, e))) << endl;
 }
