@@ -1,35 +1,59 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define endl '\n'
+#define int long long int
 using namespace std;
+#define pii pair <int, int>
+#define mii map<int, int>
+#define pb push_back
+#define deb(x) cout << #x << " " << x << endl
+#define deb2(x, y) cout << #x << " " << x << " " << #y << " " << y << endl
+#define Loop(s, e, itr) for (int itr = s; itr < e; itr++)
+#define loop(n) for(int i = 0; i < n; i++)
+#define vin vector<int>
+#define vec vector
+#define w(t) int tc; cin >> tc; for(int t = 1; t <= tc; t++)
+#define mk_arr(n, t, s) t* n = new t[s]; loop(s) cin >> n[i]; 
+#define mi_arr(n, s) int* n = new int[s]; loop(s) cin >> n[i]; 
+#define arr_out(n, s) Loop(0, s, lout) cout << n[lout] << " ";
+#define pi(x) printf("%lld ", x);
+#define mod 1000000007
 
-#define deb(x) cout << #x << " " << x << endl;
 
-int main(){
-    string in;
-    cin >> in;
-    int arr[4] = {0};
-    for(int i = 0; i < in.size(); i++){
-        if(in[i] == 'n') arr[3]++;
-        else if(in[i] == 'e') arr[2]++;
-        else if(in[i] == 'i') arr[1]++;
-        else if(in[i] == 't') arr[0]++;
+int32_t main(){
+    string str;
+    cin >> str;
+    int n, i, t, e;
+    n = i = t = e = 0;
+    int len = str.length();
+    for(auto j: str){
+        switch (j)
+        {
+            case 'n':
+                n++;
+                break;
+            case 'i':
+                i++;
+                break;
+            case 't':
+                t++;
+                break;
+            case 'e':
+                e++;
+                break;
+        }
     }
-    // deb(arr[0]);
-    // deb(arr[1]);
-    // deb(arr[2]);
-    // deb(arr[3]);
-    int t1 = arr[0]<arr[1]?arr[0]:arr[1];
-    int t2 = arr[2]<arr[3]?arr[2]:arr[3];
-    
-    // deb(t1);
-    // deb(t2);
-
-    while(1){
-        if(t1*3 < t2){
-            cout << t1;
-            break;
-        } 
-        else t1--;
-    }
-    
-    return 0;
+    // deb2(n, e);
+    // deb2(t, i);
+    if(!(n%2)) n--;
+    n /= 2;
+    // n *= 3;
+    // n /= 3;
+    e /= 3; 
+    // cout << endl;
+    // deb2(n, e);
+    // deb2(t, i);
+    // int ee = e/3;
+    // if(n )
+    cout << min(i, min(n, min(t, e))) << endl;
 }
