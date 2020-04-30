@@ -17,31 +17,12 @@ using namespace std;
 #define mi_arr(n, s) int* n = new int[s]; loop(s) cin >> n[i]; 
 #define arr_out(n, s) Loop(0, s, lout) cout << n[lout] << " ";
 #define pi(x) printf("%lld ", x);
+#define mod 1000000007
 
 
 int32_t main(){
-    int n;
-    int temp;
+    fastio;
     w(t){
-        cin >> n;
-        vec<pii> pts;
-        pts.pb({0, 2});
-        loop(n) {
-            cin >> temp;
-            if(temp%2 == 0){
-                if(temp%4 == 0) pts.pb({i+1, 2});
-                else pts.pb({i+1, 1});
-            }
-        }
-        pts.pb({n+1, 2});
-        int len = pts.size();
-        temp = 0;
-        for(int i = 1; i < len-1; i++){
-            if(pts[i].second == 1) {
-                temp += (pts[i].first - pts[i-1].first)*(pts[i+1].first - pts[i].first);
-            }
-        }
-        int ans = (n*(n+1))/2 - temp;
-        cout << ans << endl;
+        
     }
 }
