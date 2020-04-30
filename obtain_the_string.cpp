@@ -20,9 +20,41 @@ using namespace std;
 #define mod 1000000007
 
 
+string s, t;
+int arr[100005][26];
+
+int inf = 1e8;
+
 int32_t main(){
     fastio;
-    w(t){
-        
+    w(tt){
+        cin >> s;
+        cin >> t;
+        int slen = s.length();
+        int tlen = t.length();
+        loop(26) arr[slen][i] = inf;
+        for(int i = slen-1; i >= 0; i--){
+            Loop(0, 26, j) arr[i][j] = arr[i+1][j];
+            arr[i][s[i]-'a'] = i+1;
+        }
+        int j = 0, j_prev = 0;
+        int ans = 0;
+        bool flag = true;
+        while(j < tlen){
+            int i = 0;
+            while(1){
+                int next = arr[i][t[j]-'a'];
+                if(next == inf) break;
+                else{j++; i = next;}
+                if(j >= tlen) break;
+                // deb2(i, j);
+            }
+            // cout << endl;
+            
+            if(j == j_prev){ flag = false; break; }
+            else {ans++; j_prev = j;}
+        }
+        if(flag) cout << ans << endl;
+        else cout << "-1\n";
     }
 }
