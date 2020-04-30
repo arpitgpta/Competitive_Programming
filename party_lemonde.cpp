@@ -19,7 +19,6 @@ using namespace std;
 #define pi(x) printf("%lld ", x);
 
 int arr[36];
-
 int cost(int a){
     int ans = 0;
     loop(35){
@@ -60,7 +59,6 @@ vin getm(int l){
 
 
 int32_t main(){
-    
     loop(35) arr[i] = 1e18;
     int n, l;
     cin >> n >> l;
@@ -73,8 +71,6 @@ int32_t main(){
     for(auto i : M) ans = min(ans, cost(i));
     cout << ans << endl;
 }
-
-
 
 //                    solution by tourist                     \\
 
