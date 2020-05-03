@@ -32,11 +32,13 @@ int32_t main(){
             if(arr[i] > arr[i+1]){
                 diff = arr[i] - arr[i+1];
                 c = 0;
+                deb(diff);
                 while(diff){
                     c++;
                     diff >>= 1;
                 }
-                ans = (c + ans);
+                ans = max(c, ans);
+                deb(ans);
                 arr[i+1] = arr[i];
             }
         }
