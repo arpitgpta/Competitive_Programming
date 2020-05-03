@@ -17,7 +17,8 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 
 int32_t main(){
+    fastio;
     w(t){
-        
+
     }
 }
