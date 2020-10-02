@@ -1,0 +1,42 @@
+PERFECT_PRODUCT EDITORIAL.
+
+Contest Links:-
+Setter :-@jprm2
+
+Editorialist :-@jprm2
+
+Prerequisites:- observation , Dynamic programming ,Gravity , Bellman Ford Algorithm. Memoriazation Technique.
+
+Solution: for 100 points .
+
+Explanation :- Understanding the problem
+
+THe problem says you to transport the sacks between source station to destination steps with minimum cost first calculate cost between any two stations 
+let's say there are 2 stations 1 and 2 having heights as 3 and 5 respectively and distance between this two stations  is lets say 4 so the cost of 
+transporting from building 1 to building 2 is (5-3)*4=2*4=8 against the gravity. And the cost to transport from 2 to 1 is different with (3-5)*4=-2*4=-8.
+So both the paths are different with exactly opposite costs.
+
+Now we understood that we needed to caculate the costs between all the $T$ station queries given . Calculating this cost takes O(1) time if you already know
+the heights and difference between any two stations . You were given the distance between adjacent stations but you can find the distance between any 2 stations
+with the help of previously computed prefix sum and finding the differnce between ith and jth value of the prefix sum array for ith and jth node in the asked
+query.
+Now we knew all the nodes of a graph we knew cost of edges connecting 2 nodes of the asked query of this directed graph then we can easily calculate The shortest
+path using any of the known algorithm for single source shortest path but since negative edges and negative cycle both can be present in the test case then 
+you can use bellman ford algorithm to compute our minimum cost and if their is any negative cycle present over this directed graph then we will output -1 
+for all the queries because if any one negative cycle is present then we can always repeat along the cycle to make our value infinitely minimum then 
+if no path is possible for the given (2 nodes or stations) then we will directly output INFINITY THAT IS EQUAL TO 10000000000000000. in my solution.
+By Dynamic programming you will store all the distances from given source in a single O(N*T) time by bellman ford algorithm and storing this information 
+answers all the given S queries in O(1) Time.
+
+Links to study Bellman ford algorithm:- 
+1) https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/
+2)https://www.techiedelight.com/single-source-shortest-paths-bellman-ford-algorithm/
+3)https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
+4)https://cp-algorithms.com/graph/bellman_ford.html
+
+
+Setter's and Editorialist's Solution: Link--
+
+ Time Complexity O(N*T +S+T)=O(TN)
+ 
+Hope you liked it and feel free to share any approach or ask any doubts in comments below. Other optimal solutions are encouraged too.

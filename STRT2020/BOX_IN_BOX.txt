@@ -1,0 +1,28 @@
+BOX INSIDE ANOTHER BOX
+
+Contest Links:-
+Setter :-@aayushindwan
+
+Editorialist :-@jprm2
+
+Prerequisites:- Observation , Greedy , Maths. 
+
+Solution: for 100 points .
+
+Explanation :-
+
+In this problem It was clearly visible that for each frame we have to select the minimumvalue of that frame so if N is even then only N/2 frames are possible and 
+if N is odd then only  N/2 +1 frames are visible and so always we have to sum up (N+1)/2 minimum values 1 from each frame and finally print the answers.
+So this is greedy approach when we choose always minimum value from the frames. 
+
+Now the question is how you will iterate frames wise now this might have many different approaches.What I preferred was choosing left=1, right=N and up=N and down=N values
+of the currrent iterator and moving from current left to right with this fixed up and down iterators for covering the rows and in reverse way moving from 
+up to down with this fixed right and left iterator to move over the columns. Now the minimum of both these iterations updated simultaneously be minr,minc
+and finally updating answer with ans+=min(minr,minc); and finally printing the answer over all such (N+1)/2 frames and summing up the answer also in each iteration
+reducing the  size of the matrix by incrementing left by1 , decrementing right by1 , incrementing up by 1 and decrementing down by 1.
+
+Setter's and Editorialist's Solution: Link--
+
+ Time Complexity :- O(N*N)
+ 
+Hope you liked it and feel free to share any approach or ask any doubts in comments below. Other optimal solutions are encouraged too.
