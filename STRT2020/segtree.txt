@@ -1,0 +1,47 @@
+PERFECT_PRODUCT EDITORIAL.
+
+Contest Links:-
+
+Editorialist :-@jprm2
+
+Prerequisites:- Number Theory ,Seive ,Segment Tress ,Query Optimization
+
+Solution: for 100 points .
+
+Explanation :-Problem was pretty straight forward that you want to find product in a range of array and update the elements in the queries of type 2.
+where in each update operation you will multiply the number present at any given index by the given number . And in queries of type one you have to answer 
+whether the product of numbers in the range is a perfect square or not.
+
+In both of the queries your main point is that you have to find product of numbers in the given range.Thus as per constraints if you will find the product 
+and try to store in any data type then it will overflow. So to preserve the number you were given another observation that the highest prime factor of any
+number of a array or in query is less than 100.  
+
+Making use of above given fact this problem can be solved very easily. What we can do is that each array index we can store a vector of length 100 which 
+will store the prime factorization of the given number for example if number is 12 then vectors initial values will be like {0,0,2,1,0,0,0....} since prime
+factorization of 12 =2*2*3 so at index 2 we inserted power of 2 and at index 3 we inserted 1 because power of 3 is 1. This generation of prime factorization
+of a number takes log(n) time only you can study about this from here https://codeforces.com/blog/entry/7262 
+Now suppose our array is of 2 size and it is like 
+12 3. After prime factorization  it looks like:-
+
+{0,0,2,1,0,0},{0,0,0,1,0,0}; two vectors will be of full 100 size only but all further zeroes are truncated. now you might know that for finding the product
+of two numbers you basically sum the powers of their primes so we find the sum of powers of primes for a particular prime number till 100 index and thus when
+we sum these 2 given vectors then it becomes {0,0,2,2,0,0} now if in this final produced vector if all numbers are even(divisible by 2) then the product is a
+perfect square. if any value in the produced product vector is odd then the number is not a perfect square. 
+
+Thus your main task is to find the sum of  powers of a particular prime number in the given range in a query of type 1 from $l$ to $r$ and this is also not a tough task.
+For range summation queries and index update query you can use any of the fenwick or segment trees with a vector of length 100 as a node because all primes
+are less than or equal to 100. keeping this sum is not a difficult task. finding this sum in a range can be done easily just return vector as answer of a query.
+we will use segment trees only for finding the sum of powers of a particular prime in a given range and for update query with multiplying the value at index 
+$i$ with $val$ we can do easily just by prime factorizing the given value and adding the corresponding powers of this index's prime factor..
+
+For example value at index 3 is 3({0,0,0,1,0,0}) thus after multiplying this value with 9({0,0,0,2,0,0}) then the value becomes 27 which is nothing but
+{0,0,0,1,0,0}+{0,0,0,2,0,0}={0,0,0,3,0,0};
+
+Thus this problems becomes very easy all you have to implement is with segment trees that range summation of powers of particular 
+prime number and source to study that. https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
+
+
+Setter's and Editorialist's Solution: Link--
+
+
+Hope you liked it and feel free to share any approach or ask any doubts in comments below. Other optimal solutions are encouraged too.

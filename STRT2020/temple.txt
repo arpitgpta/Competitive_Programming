@@ -1,0 +1,68 @@
+REACH THE TEMPLE EDITORIAL.
+
+Contest Links:-
+
+Setter:-@jprm2.
+Editorialist :-@jprm2.
+
+Prerequisites:- Recursion, Dynamic Programming,Observation.
+
+Solution: for 100 points .
+
+Explanation :-Problem was pretty straight forward that you want to find the number of ways to reach the nth step of a temple taking exactly k steps given   
+ steps sizes are a and b and c. Now first basic approach comes is for recursion.  where what you can do simply is like given below.
+
+
+  50 points:- Recursion.
+
+  ll exactly_k_steps(ll n,ll steps)
+  {
+     if(n==0&&steps==k)
+     return 1;
+      if(n<0)
+     return 0;
+      if(steps>k)
+      return 0;
+      return exactly_k_steps(n-1,steps+1)+exactly_k_steps(n-2,steps+1) +exactly_k_steps (n-3,steps+1);
+  }
+  here a=1 ,b=2 and c=3 that is the value of step size or a leap size. for a particular step if your destination is n and you are at level 0 then you can 
+  leap either 1 step forward or 2 step forward or 3 step forward so as you move one step now the new problem becomes that for n-1 steps you haev to reach in
+  exactly k-1 steps or in k-1 steps you have to travel n-2 remaining steps or in k-1 steps you have to travel n-3 remaining steps . I am starting with initial 0
+  steps and when my variable steps becomes exactly k I check if n is 0 or not if it is then I return 1 from that leaf of my recursion tree andelse I return 0
+  from that leaf that this way or this is not as per the conditions thus at root node finally that is in the main recursion call I will get all the possible 
+  solution numbers when at current I presently check by taking all the possible steps that is 1,2,3 .Now this recursion takes for a particular n it takes time 
+  equal to 3^k. which was satisfying 1st subtask.
+
+  Complete Solution : Dynamic Programming: 100 points. 
+
+  Now see How we will memorize the our previously obtained problems for a particular n and k in a dp table of dp[10001][101] for storing results and 
+  optimizing the solution.
+
+  the code snippet is:- 
+
+  #define P 1000000007
+  ll dp[100000][100];
+  ll a,b,c;
+  ll k;
+  ll exactly_k_steps(ll n,ll steps)
+  {
+      
+     if(n==0&&steps==0)
+     return 1;
+      if(n<0)
+     return 0;
+      if(steps<0)
+      return 0;
+      if(dp[n][steps]!=-1)
+      return dp[n][steps];
+      dp[n][steps]= (exactly_k_steps(n-a,steps-1)%P+exactly_k_steps(n-b,steps-1)%P +exactly_k_steps (n-c,steps-1)%P)%P;
+      return (dp[n][steps])%P;
+  }
+   so we consider each new n and k as a particular solution of a particularly a new problem and we save the answer of this new problem and use it directly from
+   the memorization dp table. . I hope that dp solution is clear to you. modulo 1000000007 is just for preserving the number and not to overflow.  
+
+
+Setter's and Editorialist's Solution: Link--
+
+
+Hope you liked it and feel free to share any approach or ask any doubts in comments below. Other optimal solutions are encouraged too.
